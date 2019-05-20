@@ -31,11 +31,31 @@ def show(request, num):
 
 def edit(request, num):
     id=num
+    request.session['id'] = id
     context = {
         "show": Shows.objects.get(id=id)
     }
     print(context)
     return render(request, "show/edit.html", context)
+
+def editshow(request):
+    id = request.session['id']
+    if request.method == "POST":
+        show = Shows.objects.get(id=id)
+        print(show.title)
+        show.title = request.POST['title']
+        print(show.title)
+        print(show.network)
+        show.network = request.POST['network']
+        print(show.network)
+        print(show.release_date)
+        show.release_date = request.POST['date']
+        print(show.release_date)
+        show.descriptions = request.POST['description']
+        show.save()
+        print('*' * 80)
+        print(show)
+    return redirect(f"show/{id}")
 
 def destroy(request, num):
     id=num

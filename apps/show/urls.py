@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^show/(?P<num>\d+)$', views.show),
     url(r'^edit/(?P<num>\d+)$', views.edit),
     url(r'^destroy/(?P<num>\d+)$', views.destroy),
+    url(r'^editshow$', views.editshow),
 ]
