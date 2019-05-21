@@ -11,14 +11,14 @@
     <style>
         h1 {
             display: inline-block;
-            width:90%;
+            width: 90%;
         }
+
         body {
             background-color: #110e16;
-            color:aliceblue;
+            color: aliceblue;
             margin-top: 20px;
         }
-    
     </style>
 </head>
 
@@ -26,6 +26,13 @@
     <div class="container-fluid">
         <div class="container">
             <br>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             <h1>TV Show {{ show.id }}</h1>
             <a class="inline-block" href="/">Go Back</a>
             <br>

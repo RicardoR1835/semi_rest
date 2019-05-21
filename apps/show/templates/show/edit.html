@@ -12,12 +12,13 @@
     <style>
         body {
             background-color: #110e16;
-            color:aliceblue;
+            color: aliceblue;
             margin-top: 20px;
         }
+
         h1 {
             display: inline-block;
-            width:90%;
+            width: 90%;
         }
     </style>
 </head>
@@ -27,6 +28,13 @@
         <div class="container d-flex justify-content-between">
             <div class="container">
                 <h1 class="inline">Edit Show {{ show.id }}</h1>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
                 <a class="inline-block" href="/">Go Back</a>
                 <form action="/editshow" method="POST">
                     {% csrf_token %}
@@ -36,19 +44,22 @@
                             <input type="text" name="title" class="form-control" value="{{ show.title }}">
                             <br>
                             <p class="inline-block">Network</p>
-                            <input type="text" name="network" class="form-control col-5 inline-block" value="{{ show.network }}">
+                            <input type="text" name="network" class="form-control col-5 inline-block"
+                                value="{{ show.network }}">
                             <br>
                             <p class="inline-block">Release Date</p>
-                            <input type="date" name="date" class="form-control col-2 inline-block" placeholder="{{ show.release_date }}">
+                            <input type="date" name="date" class="form-control col-2 inline-block"
+                                placeholder="{{ show.release_date }}">
                             <br>
                             <label name="description" for="description">Description:</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3">{{show.descriptions}}</textarea>
-                                <br>
-                                <input type="submit" value="Update" class="btn btn-dark">
-                                <br>
-                                <a href="/show/{{show.id}}">Go to Show</a>
-                              </div>
-                            </div>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                                rows="3">{{show.descriptions}}</textarea>
+                            <br>
+                            <input type="submit" value="Update" class="btn btn-dark">
+                            <br>
+                            <a href="/show/{{show.id}}">Go to Show</a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
